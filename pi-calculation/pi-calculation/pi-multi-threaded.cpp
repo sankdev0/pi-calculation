@@ -2,13 +2,16 @@
 #include <time.h>
 #include <chrono>
 
+#define CHUNKSIZE 1000000
+
 using namespace std::chrono;
 
 /**
-* ¬ычисление приближени€ числа Pi в одном потоке.
+* ¬ычисление приближени€ числа Pi в нескольких потоках.
 */
-double calc_pi_single_threaded()
+double calc_pi_multi_threaded()
 {
+	int chunk = CHUNKSIZE;
 	long long num_steps = 1000000000;
 	double step;
 	double x, pi, sum = 0.0;
@@ -17,10 +20,15 @@ double calc_pi_single_threaded()
 
 	auto start = high_resolution_clock::now();
 
-	for (i = 0; i < num_steps; i++) {
-		x = (i + .5) * step;
-		sum = sum + 4.0 / (1. + x * x);
-		//printf("Hello, world! %d", omp_get_thread_num());
+#pragma omp parallel num_threads(6) shared(chunk) private(i, x) reduction(+: sum)
+	{
+#pragma omp for schedule(dynamic,chunk) nowait
+		//  од программы, который будет выполн€тьс€ параллельно
+		for (i = 0; i < num_steps; i++) {
+			x = (i + .5) * step;
+			sum = sum + 4.0 / (1. + x * x);
+			//printf("Hello, world! %d", omp_get_thread_num());
+		}
 	}
 
 	pi = sum * step;
@@ -30,6 +38,6 @@ double calc_pi_single_threaded()
 	auto duration = duration_cast<microseconds>(stop - start);
 
 	printf("===>>> ќбработка цикла зан€ла %lld микросекунд.\n", (long long)duration.count());
-	
+
 	return pi;
 }

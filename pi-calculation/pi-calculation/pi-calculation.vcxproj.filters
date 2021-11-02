@@ -21,6 +21,12 @@
     <ClCompile Include="pi-single-threaded.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pi-multi-threaded.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="synchro-demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common-header.h">

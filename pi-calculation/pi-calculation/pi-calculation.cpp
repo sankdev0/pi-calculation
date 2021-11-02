@@ -12,8 +12,14 @@ int main()
     SetConsoleCP(1251);// установка кодовой страницы win-cp 1251 в поток ввода
     SetConsoleOutputCP(1251); // установка кодовой страницы win-cp 1251 в поток вывода
 
-    std::cout << "1. Демо вычисления числа Пи в одном потоке\n";
-    double pi = calc_pi_single_threaded();
+    double pi;
+
+    //std::cout << "1. Демо вычисления числа Пи в одном потоке\n";
+    //pi = calc_pi_single_threaded();
+    //printf("Полученное значение числа Пи: %15.12f\n", pi);
+
+    std::cout << "2. Демо вычисления числа Пи в нескольких потоках\n";
+    pi = calc_pi_multi_threaded();
     printf("Полученное значение числа Пи: %15.12f\n", pi);
 
 }

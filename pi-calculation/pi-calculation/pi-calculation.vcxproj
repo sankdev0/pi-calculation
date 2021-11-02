@@ -141,7 +141,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="pi-calculation.cpp" />
+    <ClCompile Include="pi-multi-threaded.cpp" />
     <ClCompile Include="pi-single-threaded.cpp" />
+    <ClCompile Include="synchro-demo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common-header.h" />
