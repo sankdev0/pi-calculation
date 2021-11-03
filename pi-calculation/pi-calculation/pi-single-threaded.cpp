@@ -20,7 +20,6 @@ double calc_pi_single_threaded()
 	for (i = 0; i < num_steps; i++) {
 		x = (i + .5) * step;
 		sum = sum + 4.0 / (1. + x * x);
-		//printf("Hello, world! %d", omp_get_thread_num());
 	}
 
 	pi = sum * step;
